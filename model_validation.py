@@ -1,16 +1,4 @@
-"""
-model_validation.py - Threshold-based model acceptance logic
-=============================================================
-Used by CI/CD pipeline to enforce quality gates before model promotion.
 
-Exit codes:
-    0 = Model passes all quality gates
-    1 = Model fails one or more quality gates
-
-Usage:
-    python model_validation.py --min-accuracy 0.90 --min-f1 0.85 --min-auc 0.90
-    python model_validation.py --metrics-file latest_metrics.json
-"""
 
 import argparse
 import json

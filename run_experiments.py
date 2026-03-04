@@ -1,12 +1,4 @@
-"""
-run_experiments.py - Run 5+ experiments with varying hyperparameters
-=====================================================================
-Systematically explores hyperparameter space and logs all runs to MLflow.
-Produces a comparison table for the lineage report.
 
-Usage:
-    python run_experiments.py
-"""
 
 import json
 import os

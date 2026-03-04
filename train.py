@@ -1,12 +1,4 @@
-"""
-train.py - Standalone training script
-======================================
-Can be run independently or called from the Airflow DAG.
-Logs all parameters, metrics, and artifacts to MLflow.
 
-Usage:
-    python train.py --n_estimators 100 --max_depth 10 --learning_rate 0.01
-"""
 
 import argparse
 import hashlib

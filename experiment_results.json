@@ -1,7 +1,7 @@
 [
   {
     "run_name": "baseline_run",
-    "run_id": "9dc3416834bd40f1b329a7a4f5ef05a3",
+    "run_id": "0ab6a6fa80f949d5b917115218e126c4",
     "description": "Baseline: small forest, shallow trees",
     "n_estimators": 50,
     "max_depth": 5,
@@ -15,7 +15,7 @@
   },
   {
     "run_name": "deeper_trees",
-    "run_id": "9ae3942d91f54357b6809a0db77d6f1b",
+    "run_id": "b1b7ac433c3d4a8daba50d7c365d906e",
     "description": "Deeper trees to capture complex interactions",
     "n_estimators": 100,
     "max_depth": 15,
@@ -29,7 +29,7 @@
   },
   {
     "run_name": "large_forest",
-    "run_id": "bf125d61eafe4bf5815a8957ab34f833",
+    "run_id": "de463486f35e4e9c85a0218325e2dbe9",
     "description": "More estimators for variance reduction",
     "n_estimators": 200,
     "max_depth": 10,
@@ -43,7 +43,7 @@
   },
   {
     "run_name": "high_min_split",
-    "run_id": "cd2fe8fac2ba495ea8143ed1a4231fae",
+    "run_id": "6e01be84da0e47d68b1fc5caa9749e40",
     "description": "Higher min_samples_split for regularization",
     "n_estimators": 100,
     "max_depth": 10,
@@ -57,7 +57,7 @@
   },
   {
     "run_name": "production_candidate",
-    "run_id": "da51f617951543248887275f02b377eb",
+    "run_id": "3b9826df764448d1bc4ef68fe2b654f9",
     "description": "Balanced config targeting production deployment",
     "n_estimators": 150,
     "max_depth": 12,
