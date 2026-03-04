@@ -1,0 +1,72 @@
+[
+  {
+    "run_name": "baseline_run",
+    "run_id": "9dc3416834bd40f1b329a7a4f5ef05a3",
+    "description": "Baseline: small forest, shallow trees",
+    "n_estimators": 50,
+    "max_depth": 5,
+    "min_samples_split": 2,
+    "learning_rate": 0.01,
+    "accuracy": 0.9333333333333333,
+    "f1_score": 0.9333333333333333,
+    "precision": 0.9333333333333333,
+    "recall": 0.9333333333333333,
+    "auc": 0.9933333333333333
+  },
+  {
+    "run_name": "deeper_trees",
+    "run_id": "9ae3942d91f54357b6809a0db77d6f1b",
+    "description": "Deeper trees to capture complex interactions",
+    "n_estimators": 100,
+    "max_depth": 15,
+    "min_samples_split": 2,
+    "learning_rate": 0.01,
+    "accuracy": 0.9333333333333333,
+    "f1_score": 0.9333333333333333,
+    "precision": 0.9333333333333333,
+    "recall": 0.9333333333333333,
+    "auc": 0.9933333333333333
+  },
+  {
+    "run_name": "large_forest",
+    "run_id": "bf125d61eafe4bf5815a8957ab34f833",
+    "description": "More estimators for variance reduction",
+    "n_estimators": 200,
+    "max_depth": 10,
+    "min_samples_split": 2,
+    "learning_rate": 0.01,
+    "accuracy": 0.9333333333333333,
+    "f1_score": 0.9333333333333333,
+    "precision": 0.9333333333333333,
+    "recall": 0.9333333333333333,
+    "auc": 0.9933333333333333
+  },
+  {
+    "run_name": "high_min_split",
+    "run_id": "cd2fe8fac2ba495ea8143ed1a4231fae",
+    "description": "Higher min_samples_split for regularization",
+    "n_estimators": 100,
+    "max_depth": 10,
+    "min_samples_split": 5,
+    "learning_rate": 0.01,
+    "accuracy": 0.9666666666666667,
+    "f1_score": 0.9665831244778613,
+    "precision": 0.9696969696969696,
+    "recall": 0.9666666666666667,
+    "auc": 0.9933333333333333
+  },
+  {
+    "run_name": "production_candidate",
+    "run_id": "da51f617951543248887275f02b377eb",
+    "description": "Balanced config targeting production deployment",
+    "n_estimators": 150,
+    "max_depth": 12,
+    "min_samples_split": 3,
+    "learning_rate": 0.005,
+    "accuracy": 0.9666666666666667,
+    "f1_score": 0.9665831244778613,
+    "precision": 0.9696969696969696,
+    "recall": 0.9666666666666667,
+    "auc": 0.9933333333333333
+  }
+]

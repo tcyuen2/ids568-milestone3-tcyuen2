@@ -1,0 +1,10 @@
+venv/
+__pycache__/
+*.pyc
+mlflow.db
+mlflow-artifacts/
+mlruns/
+airflow_home/
+*.egg-info/
+.DS_Store
+/tmp/

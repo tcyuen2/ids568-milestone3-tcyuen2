@@ -1,0 +1,102 @@
+# .github/workflows/train_and_validate.yml
+# CI/CD Pipeline: Train model, log to MLflow, validate quality gates
+# =================================================================
+# Triggers on push to main or pull requests.
+# Fails the pipeline if model metrics fall below thresholds.
+
+name: Train and Validate Model
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  MLFLOW_TRACKING_URI: "http://localhost:5000"
+  MLFLOW_EXPERIMENT_NAME: "ci_train_pipeline"
+  MODEL_NAME: "sklearn_classifier"
+  PYTHON_VERSION: "3.11"
+
+jobs:
+  train-and-validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      # ----- Setup -----
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Cache pip dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            pip-
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # ----- MLflow Server -----
+      - name: Start MLflow tracking server
+        run: |
+          mlflow server \
+            --host 0.0.0.0 \
+            --port 5000 \
+            --backend-store-uri sqlite:///mlflow.db \
+            --default-artifact-root ./mlflow-artifacts &
+          sleep 5
+          echo "MLflow server started"
+
+      # ----- Training -----
+      - name: Run model training
+        run: |
+          python train.py \
+            --n_estimators 100 \
+            --max_depth 10 \
+            --min_samples_split 2 \
+            --learning_rate 0.01 \
+            --run_name "ci_run_${{ github.sha }}"
+
+      - name: Display training metrics
+        run: |
+          echo "=== Training Metrics ==="
+          cat latest_metrics.json
+
+      # ----- Validation / Quality Gate -----
+      - name: Validate model quality
+        run: |
+          python model_validation.py \
+            --metrics-file latest_metrics.json \
+            --min-accuracy 0.90 \
+            --min-f1 0.85 \
+            --min-auc 0.90
+
+      # ----- Artifacts -----
+      - name: Upload metrics artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: training-metrics
+          path: latest_metrics.json
+          retention-days: 30
+
+      - name: Upload MLflow data
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mlflow-data
+          path: |
+            mlflow.db
+            mlflow-artifacts/
+          retention-days: 30
